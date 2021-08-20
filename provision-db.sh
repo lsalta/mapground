@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+echo
+echo
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! provision_db.sh !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo
+echo
+
 apt-get update
 apt-get install -y postgresql-10-postgis-2.4 postgis supervisor
 /usr/sbin/locale-gen

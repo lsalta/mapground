@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+echo
+echo
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!! provision_app.sh !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo
+echo
 
 apt-get update
 apt-get install -y uwsgi apache2 postgresql-client
@@ -19,3 +24,4 @@ if [ $? -eq 0 ]; then
     usermod -a -G www-data vagrant
 fi
 # update-locale LC_CTYPE=es_AR.UTF-8
+
