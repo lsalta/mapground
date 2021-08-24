@@ -28,6 +28,7 @@ api/docs/site
 .idea
 
 #venv
+bin
 include
 lib
 share
