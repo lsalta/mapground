@@ -23,3 +23,15 @@ api/docs/site
 .vagrant
 .vscode
 *console.log
+
+#Jetbrains
+.idea
+
+#venv
+bin
+include
+lib
+share
+local
+pyvenv.cfg
+django_extras

@@ -186,6 +186,6 @@ ENCODINGS = (
 )
 
 # https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-FILE_UPLOAD_PERMISSIONS
-FILE_UPLOAD_PERMISSIONS = 0664
+FILE_UPLOAD_PERMISSIONS = 0o664 #Needed as Octal
 
-from settings_local import *
+from MapGround.settings_local import *

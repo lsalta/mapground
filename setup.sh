@@ -135,12 +135,15 @@ sed -e "s:/var/local/mapground:${FILES_DIR}:g" mapground_apache.conf.template > 
 rm /etc/apache2/sites-enabled/mapground.conf 2>/dev/null
 ln -s /etc/apache2/sites-available/mapground.conf /etc/apache2/sites-enabled/mapground.conf
 
-sudo -u ${DEV_USER} bash -c 'virtualenv --system-site-packages venv; source venv/bin/activate; pip install -r requirements.txt'
+sudo -u ${DEV_USER} bash -c 'virtualenv -p python2.7 --system-site-packages venv; source venv/bin/activate; pip install -r requirements.txt'
 
 source venv/bin/activate
 
+echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! migrations !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 python manage.py makemigrations
+echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! migrate !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 python manage.py migrate
+echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! fixtures !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 python manage.py loaddata MapGround/fixtures/user.json
 python manage.py loaddata layers/fixtures/initial_data.json
 python manage.py loaddata maps/fixtures/initial_data.json
