@@ -1,0 +1,26 @@
+adduser appserv
+usermod -aG sudo appserv
+usermod -aG www-data appserv
+su - appserv
+sudo mkdir /usr/local/mapground
+sudo chown appserv /usr/local/mapground
+cd /usr/local/mapground/
+git clone https://github.com/lsalta/mapground.git .
+sudo sh provision-app.sh
+sudo sh provision-db.sh
+
+sudo vi /etc/nginx/nginx.conf
+replace "user www-data;" with "user appserv;"
+
+sudo chmod +x setup.sh
+#replace '-s="http://192.168.33.11/"' with host ip or server url
+sudo ./setup.sh -h="localhost" -s="http://192.168.33.11/" 
+##va a preguntar por pass para la db poner cualquiera sencilla "asdfp" por ejemplo
+
+#forzar que el timestamp por default en la db sea UTC (si no genera problemas de visualización en los rásters)
+sudo su - postgres; psql mapground -c "alter database mapground set timezone TO 'Etc/UTC';"; exit
+
+sudo service nginx restart; sudo service apache2 restart; sudo service uwsgi restart
+sudo sh setup_tasks.sh
+
+##para testear en http://192.168.33.11/ (o el siteurl definido) debería aparecer la aplicación
